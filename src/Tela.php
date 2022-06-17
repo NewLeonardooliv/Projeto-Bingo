@@ -21,7 +21,7 @@ class Tela
         $utilidades = new Util();
         $utilidades->cabecalho('Menu Inicial');
 
-        print "1 - Cadastrar Participante. \n2 - Configurar Bingo. \n3 - Prêmios. \n4 - Iniciar Bingo.\n5 - Sair.\n\n";
+        print "1 - Cadastrar Participante \n2 - Configurar Bingo \n3 - Prêmios \n4 - Iniciar Bingo\n5 - Sair\n\n";
         $opcao = $utilidades->lerOpcao();
 
         if ($opcao == 1) {
@@ -72,6 +72,28 @@ class Tela
     {
         $utilidades = new Util();
         $utilidades->cabecalho('Configuração Bingo');
+
+        print "1 - Configurar Camanho da Cartela\n2 - Registrar Cartela\n\n0 - Voltar\n";
+        $opcao = $utilidades->lerOpcao();
+
+        if ($opcao == 1) {
+            $utilidades->limpaTela();
+
+            $tamanhoCartela =  $this->telaConfigurarCartela();
+        }
+        if ($opcao == 2) {
+        }
+        if ($opcao == 0) {
+            $utilidades->limpaTela();
+
+            return $this->telaInicio();
+        }
+    }
+
+    public function telaConfigurarCartela(){
+        $utilidades = new Util();
+        $utilidades->cabecalho('Configuração Cartela');
+
     }
 
     public function telaPremio()
