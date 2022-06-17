@@ -1,5 +1,5 @@
-## Projeto Bingo
-# Descrição
+# Projeto Bingo
+## Descrição
 Este trabalho tem como objetivo o desenvolvimento de um sistema de
 Bingo. O sistema do bingo será capaz de cadastrar os participantes,
 cadastrar os prêmios, assim como o número de ganhadores possíveis.
