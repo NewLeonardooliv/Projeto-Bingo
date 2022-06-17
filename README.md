@@ -4,7 +4,7 @@ Este trabalho tem como objetivo o desenvolvimento de um sistema de
 Bingo. O sistema do bingo será capaz de cadastrar os participantes,
 cadastrar os prêmios, assim como o número de ganhadores possíveis.
 Quando o sistema encontrar todos os possíveis ganhadores, será
-apresentado umrelatório detalhado, informando os números sorteados,
+apresentado um relatório detalhado, informando os números sorteados,
 os vencedores e os prêmios recebidos por cada participante.
 
 O sistema deverá apresentar um menu inicial, onde o organizador do
