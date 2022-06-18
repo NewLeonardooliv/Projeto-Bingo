@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Bingo;
+
 class Premio
 {
     private const DIR_ARQUIVO_PREMIO = './Arquivos/Premio/';

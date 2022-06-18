@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Bingo;
+
 class Cartela
 {
     public function registraCartela($participante, $tamanho)

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Bingo;
+
 class Util
 {
     public static function lerOpcao()

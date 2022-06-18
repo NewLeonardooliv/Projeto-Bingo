@@ -1,5 +1,7 @@
 <?php
 
-require 'src/Tela.php';
+require 'src/autoload.php';
+
+use App\Bingo\Tela;
 
 new Tela();

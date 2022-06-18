@@ -1,12 +1,6 @@
 <?php
 
-require 'Participante.php';
-
-require 'Util.php';
-
-require 'Premio.php';
-
-require 'Cartela.php';
+namespace App\Bingo;
 
 class Tela
 {
