@@ -2,7 +2,7 @@
 
 class Cartela
 {
-    private $dirArquivo = './Arquivos/Participante';
+    private $dirArquivo = './Arquivos/Participante/';
 
     public function registraCartela($participante, $tamanho)
     {

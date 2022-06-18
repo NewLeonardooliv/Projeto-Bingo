@@ -119,4 +119,15 @@ class Util
     {
         return preg_replace('/[^0-9]/is', '', $numero);
     }
+
+    public function verificaArquivo($arquivo)
+    {
+        for ($i = 0; $i < count($arquivo); $i++) {
+            if (preg_replace('([^\\s]+(\\.(? i)(txt?))$)', '', $arquivo)) {
+                $arquivo += $arquivo;
+            }
+        }
+
+        return $arquivo;
+    }
 }

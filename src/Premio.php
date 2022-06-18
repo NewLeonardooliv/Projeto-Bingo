@@ -23,6 +23,9 @@ class Premio
     {
         $arquivo = scandir($this->dirArquivo);
 
+        $utilidades = new Util();
+        $arquivo = $utilidades->verificaArquivo($arquivo);
+
         if (count($arquivo) > 2) {
             print "Prêmios registrados: \n";
         }
@@ -30,8 +33,8 @@ class Premio
             print "* Nenhum prêmio encontrado\n";
         }
 
-        for ($i = 2; $i < count($arquivo); $i++) {
-            print "{$arquivo[$i]}\n";
+        for ($i = 0; $i < count($arquivo); $i++) {
+            print "- {$arquivo[$i]}\n";
         }
         print "\n\n";
     }

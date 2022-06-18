@@ -2,16 +2,11 @@
 
 class Participante
 {
-    private $dirArquivo = './Arquivos/Participante';
+    private $dirArquivo = './Arquivos/Participante/';
 
-    // public function __construct()
-    // {
-
-    // }
-
-    public function verParticipante()
+    public function verParticipante($nome, $sobrenome)
     {
-        $arquivo = $this->dirArquivo."{$this->nome} {$this->sobrenome}.txt";
+        $arquivo = $this->dirArquivo."{$nome} {$sobrenome}.txt";
 
         if (file_exists($arquivo)) {
             $fp = fopen($arquivo, 'r');
@@ -42,7 +37,7 @@ class Participante
     {
         $texto = "Nome Participante: {$nome} {$sobrenome}\nTelefone: {$telefone} \nDocumento: {$documento}\n\n";
 
-        $arquivo = $this->dirArquivo."{$this->nome} {$this->sobrenome}.txt";
+        $arquivo = $this->dirArquivo."{$nome} {$sobrenome}.txt";
 
         $fp = fopen($arquivo, 'a');
 
@@ -53,12 +48,12 @@ class Participante
         }
     }
 
-    public function escolherParticipante() {
+    public function escolherParticipante()
+    {
         $participantes = $this->verTodosParticipantes();
 
-        $escolha = readline("Informe participante: ");
+        $escolha = readline('Informe participante: ');
 
-        $participantes["$escolha"];
-        
+        $participantes["{$escolha}"];
     }
 }
