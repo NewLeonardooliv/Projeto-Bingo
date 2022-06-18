@@ -2,11 +2,11 @@
 
 class Participante
 {
-    private $dirArquivo = './Arquivos/Participante/';
+    public const DIR_ARQUIVO_PARTICIPANTE = './Arquivos/Participante/';
 
     public function verParticipante($nome, $sobrenome)
     {
-        $arquivo = $this->dirArquivo."{$nome} {$sobrenome}.txt";
+        $arquivo = self::DIR_ARQUIVO_PARTICIPANTE."{$nome} {$sobrenome}.txt";
 
         if (file_exists($arquivo)) {
             $fp = fopen($arquivo, 'r');
@@ -19,7 +19,7 @@ class Participante
 
     public function verTodosParticipantes()
     {
-        $arquivo = scandir($this->dirArquivo);
+        $arquivo = scandir(self::DIR_ARQUIVO_PARTICIPANTE);
 
         for ($i = 2; $i < count($arquivo); $i++) {
             if (file_exists($arquivo)) {
@@ -37,7 +37,7 @@ class Participante
     {
         $texto = "Nome Participante: {$nome} {$sobrenome}\nTelefone: {$telefone} \nDocumento: {$documento}\n\n";
 
-        $arquivo = $this->dirArquivo."{$nome} {$sobrenome}.txt";
+        $arquivo = self::DIR_ARQUIVO_PARTICIPANTE."{$nome} {$sobrenome}.txt";
 
         $fp = fopen($arquivo, 'a');
 

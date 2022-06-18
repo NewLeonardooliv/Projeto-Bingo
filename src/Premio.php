@@ -2,13 +2,13 @@
 
 class Premio
 {
-    private $dirArquivo = './Arquivos/Premio/';
+    private const DIR_ARQUIVO_PREMIO = './Arquivos/Premio/';
 
     public function registraPremio($premio, $valor)
     {
         $texto = "Nome prêmio: {$premio}\nValor: {$valor}";
 
-        $arquivo = $this->dirArquivo."{$premio}.txt";
+        $arquivo = self::DIR_ARQUIVO_PREMIO."{$premio}.txt";
 
         $fp = fopen($arquivo, 'a');
 
@@ -21,10 +21,9 @@ class Premio
 
     public function verPremios()
     {
-        $arquivo = scandir($this->dirArquivo);
+        $arquivo = scandir(self::DIR_ARQUIVO_PREMIO);
 
-        $utilidades = new Util();
-        $arquivo = $utilidades->verificaArquivo($arquivo);
+        $arquivo = Util::verificaArquivo($arquivo);
 
         if (count($arquivo) > 2) {
             print "Prêmios registrados: \n";

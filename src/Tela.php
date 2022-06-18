@@ -12,42 +12,40 @@ class Tela
 {
     public function __construct()
     {
-        $utilidades = new Util();
-        $utilidades->limpaTela();
+        Util::limpaTela();
 
         $this->telaInicio();
     }
 
     public function telaInicio()
     {
-        $utilidades = new Util();
-        $utilidades->cabecalho('Menu Inicial');
+        Util::cabecalho('Menu Inicial');
 
         print "1 - Cadastrar Participante \n2 - Configurar Bingo \n3 - Prêmios \n4 - Iniciar Bingo\n5 - Sair\n\n";
-        $opcao = $utilidades->lerOpcao();
+        $opcao = Util::lerOpcao();
 
         if ($opcao == 1) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaCadastroParticipante();
         }
         if ($opcao == 2) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaConfiguracaoBingo();
         }
         if ($opcao == 3) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaPremio();
         }
         if ($opcao == 5) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             exit;
         }
 
-        $utilidades->limpaTela();
+        Util::limpaTela();
         print "\n* Opção não encontrada, tente novamente\n\n";
 
         return $this->telaInicio();
@@ -55,17 +53,16 @@ class Tela
 
     public function telaCadastroParticipante()
     {
-        $utilidades = new Util();
         $participante = new Participante();
-        $utilidades->cabecalho('Cadastro Participante');
+        Util::cabecalho('Cadastro Participante');
 
-        $nome = $utilidades->verificaNome();
-        $sobrenome = $utilidades->verificaSobrenome();
-        $telefone = $utilidades->verificaTelefone();
-        $documento = $utilidades->verificaDocumento();
+        $nome = Util::verificaNome();
+        $sobrenome = Util::verificaSobrenome();
+        $telefone = Util::verificaTelefone();
+        $documento = Util::verificaDocumento();
 
         $participante->registraParticipante($nome, $sobrenome, $telefone, $documento);
-        $utilidades->limpaTela();
+        Util::limpaTela();
 
         return $this->telaInicio();
     }
@@ -73,30 +70,29 @@ class Tela
     public function telaConfiguracaoBingo()
     {
         $cartela = new Cartela();
-        $utilidades = new Util();
         $participante = new Participante();
 
-        $utilidades->cabecalho('Configuração Bingo');
+        Util::cabecalho('Configuração Bingo');
         print "1 - Configurar Cartela\n2 - Registrar Cartela\n\n0 - Voltar\n";
-        $opcao = $utilidades->lerOpcao();
+        $opcao = Util::lerOpcao();
 
         if ($opcao == 1) {
-            $utilidades->limpaTela();
-            $utilidades->cabecalho('Configuração Cartela');
+            Util::limpaTela();
+            Util::cabecalho('Configuração Cartela');
 
             $numerosCartela = $cartela->configuraCatela();
 
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaConfiguracaoBingo();
         }
         if ($opcao == 2) {
-            $utilidades->cabecalho('Registrar Cartela');
+            Util::cabecalho('Registrar Cartela');
 
             $participante->escolherParticipante();
         }
         if ($opcao == 0) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaInicio();
         }
@@ -105,30 +101,29 @@ class Tela
     public function telaPremio()
     {
         $premio = new Premio();
-        $utilidades = new Util();
 
-        $utilidades->cabecalho('Prêmios');
+        Util::cabecalho('Prêmios');
 
         print "1- Registrar prêmio\n2- Ver Prêmios\n\n0- Voltar\n";
-        $opcao = $utilidades->lerOpcao();
+        $opcao = Util::lerOpcao();
 
         if ($opcao == 1) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaRegistraPremio();
         }
         if ($opcao == 2) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
             $premio->verPremios();
 
             return $this->telaPremio();
         }
         if ($opcao == 0) {
-            $utilidades->limpaTela();
+            Util::limpaTela();
 
             return $this->telaInicio();
         }
-        $utilidades->limpaTela();
+        Util::limpaTela();
         print "\n* Opção não encontrada, tente novamente\n\n";
 
         return $this->telaPremio();
@@ -137,16 +132,15 @@ class Tela
     public function telaRegistraPremio()
     {
         $premio = new Premio();
-        $utilidades = new Util();
 
-        $utilidades->cabecalho('Registrar Prêmios');
+        Util::cabecalho('Registrar Prêmios');
 
-        $nomePremio = $utilidades->verificaPremio();
-        $valorPremio = $utilidades->verificaValor();
+        $nomePremio = Util::verificaPremio();
+        $valorPremio = Util::verificaValor();
 
         $premio->registraPremio($nomePremio, $valorPremio);
 
-        $utilidades->limpaTela();
+        Util::limpaTela();
 
         return $this->telaInicio();
     }

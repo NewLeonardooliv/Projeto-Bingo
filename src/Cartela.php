@@ -2,13 +2,11 @@
 
 class Cartela
 {
-    private $dirArquivo = './Arquivos/Participante/';
-
     public function registraCartela($participante, $tamanho)
     {
         $texto = 'Números da certela: ';
 
-        $arquivo = $this->dirArquivo."{$participante}.txt";
+        $arquivo = Participante::DIR_ARQUIVO_PARTICIPANTE."{$participante}.txt";
 
         $fp = fopen($arquivo, 'a');
 

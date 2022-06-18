@@ -2,33 +2,33 @@
 
 class Util
 {
-    public function lerOpcao()
+    public static function lerOpcao()
     {
         return readline("\n\nEscolha uma opção: ");
     }
 
-    public function limpaTela()
+    public static function limpaTela()
     {
         print shell_exec('clear');
     }
 
-    public function cabecalho($texto)
+    public static function cabecalho($texto)
     {
         print "-------{$texto}-------\n\n";
     }
 
-    public function verificaDocumento()
+    public static function verificaDocumento()
     {
         $documento = readline('Informe o CPF do participante: ');
 
-        $documento = $this->limpaNumero($documento);
+        $documento = Util::limpaNumero($documento);
 
         if (strlen($documento) !== 11 || preg_match('/(\d)\1{10}/', $documento)) {
-            $this->limpaTela();
+            Util::limpaTela();
 
             print "* O CPF {$documento} não é valido, informe novamente.\n\n";
 
-            return $this->verificaDocumento();
+            return Util::verificaDocumento();
         }
 
         for ($i = 9; $i < 11; $i++) {
@@ -39,88 +39,88 @@ class Util
             $j = ((10 * $j) % 11) % 10;
 
             if ($documento[$k] != $j) {
-                $this->limpaTela();
+                Util::limpaTela();
 
                 print "* O CPF {$documento} não é valido, informe novamente.\n\n";
 
-                return $this->verificaDocumento();
+                return Util::verificaDocumento();
             }
         }
 
         return $documento;
     }
 
-    public function verificaNome()
+    public static function verificaNome()
     {
         $nome = readline('Informe o nome: ');
 
         if (preg_match('/[A-Z][a-z]/', $nome)) {
             return $nome;
         }
-        $this->limpaTela();
+        Util::limpaTela();
         print "* O nome {$nome} não é valido, informe novamente.\n\n";
 
-        return $this->verificaNome();
+        return Util::verificaNome();
     }
 
-    public function verificaSobrenome()
+    public static function verificaSobrenome()
     {
         $sobrenome = readline('Informe o sobrenome: ');
 
         if (preg_match('/[A-Z][a-z]/', $sobrenome)) {
             return $sobrenome;
         }
-        $this->limpaTela();
+        Util::limpaTela();
         print "* O sobrenome {$sobrenome} não é valido, informe novamente.\n\n";
 
-        return $this->verificaSobrenome();
+        return Util::verificaSobrenome();
     }
 
-    public function verificaTelefone()
+    public static function verificaTelefone()
     {
         $telefone = readline('Informe o telefone do participante: ');
 
         if (preg_match('/[0-9]/', $telefone)) {
             return $telefone;
         }
-        $this->limpaTela();
+        Util::limpaTela();
         print "* O telefone {$telefone} não é valido, informe novamente.\n\n";
 
-        return $this->verificaTelefone();
+        return Util::verificaTelefone();
     }
 
-    public function verificaPremio()
+    public static function verificaPremio()
     {
         $premio = readline('Informe o nome do prêmio: ');
 
         if (preg_match('/[A-Z][a-z]/', $premio)) {
             return $premio;
         }
-        $this->limpaTela();
+        Util::limpaTela();
         print "* O prêmio {$premio} não é valido, informe novamente.\n\n";
 
-        return $this->verificaPremio();
+        return Util::verificaPremio();
     }
 
-    public function verificaValor()
+    public static function verificaValor()
     {
         $valor = readline('Informe o valor: ');
         if (preg_match('/[0-9]/', $valor)) {
             return $valor;
         }
-        $this->limpaTela();
+        Util::limpaTela();
 
         print "* O valor {$valor} não é valido, informe novamente.\n\n";
 
-        return $this->verificaValor();
+        return Util::verificaValor();
     }
 
-    public function limpaNumero($numero)
+    public static function limpaNumero($numero)
     {
         return preg_replace('/[^0-9]/is', '', $numero);
     }
 
-    public function verificaArquivo($arquivo)
+    public static function verificaArquivo($arquivo)
     {
         for ($i = 0; $i < count($arquivo); $i++) {
             if (preg_replace('([^\\s]+(\\.(? i)(txt?))$)', '', $arquivo)) {
