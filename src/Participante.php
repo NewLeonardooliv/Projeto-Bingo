@@ -2,21 +2,12 @@
 
 class Participante
 {
-    public $nome;
-    public $sobrenome;
-    public $telefone;
-    public $documento;
     private $dirArquivo = './Arquivos/Participante';
 
-    public function __construct($nomeParticipante, $sobrenomeParticipante, $telefoneParticipante, $documentoParticipante)
-    {
-        $this->nome = $nomeParticipante;
-        $this->sobrenome = $sobrenomeParticipante;
-        $this->telefone = $telefoneParticipante;
-        $this->documento = $documentoParticipante;
+    // public function __construct()
+    // {
 
-        $this->registraParticipante();
-    }
+    // }
 
     public function verParticipante()
     {
@@ -47,9 +38,9 @@ class Participante
         }
     }
 
-    private function registraParticipante()
+    public function registraParticipante($nome, $sobrenome, $telefone, $documento)
     {
-        $texto = "Nome Participante: {$this->nome} {$this->sobrenome} \nDocumento: {$this->documento}\n\n";
+        $texto = "Nome Participante: {$nome} {$sobrenome}\nTelefone: {$telefone} \nDocumento: {$documento}\n\n";
 
         $arquivo = $this->dirArquivo."{$this->nome} {$this->sobrenome}.txt";
 
@@ -60,5 +51,14 @@ class Participante
 
             fclose($fp);
         }
+    }
+
+    public function escolherParticipante() {
+        $participantes = $this->verTodosParticipantes();
+
+        $escolha = readline("Informe participante: ");
+
+        $participantes["$escolha"];
+        
     }
 }

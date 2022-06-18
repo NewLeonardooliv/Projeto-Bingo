@@ -4,7 +4,7 @@ class Cartela
 {
     private $dirArquivo = './Arquivos/Participante';
 
-    public function registraCartela($numero, $participante)
+    public function registraCartela($participante, $tamanho)
     {
         $texto = 'Números da certela: ';
 
@@ -15,11 +15,20 @@ class Cartela
         if (file_exists($arquivo)) {
             fwrite($fp, $texto);
 
-            for ($i = 0; $i < count($numero); $i++) {
+            for ($i = 0; $i < $tamanho; $i++) {
+                $numero = readline("Informe o {$i}º valor: ");
                 fwrite($fp, $numero);
             }
 
             fclose($fp);
         }
+    }
+
+    public function configuraCatela()
+    {
+        $numero['disponivel'] = readline('Informe até qual número será disponivel: ');
+        $numero['tamanho'] = readline('Informe os tamanho da cartela: ');
+
+        return $numero;
     }
 }

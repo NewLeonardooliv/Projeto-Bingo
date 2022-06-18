@@ -6,6 +6,8 @@ require 'Util.php';
 
 require 'Premio.php';
 
+require 'Cartela.php';
+
 class Tela
 {
     public function __construct()
@@ -54,6 +56,7 @@ class Tela
     public function telaCadastroParticipante()
     {
         $utilidades = new Util();
+        $participante = new Participante();
         $utilidades->cabecalho('Cadastro Participante');
 
         $nome = $utilidades->verificaNome();
@@ -61,8 +64,7 @@ class Tela
         $telefone = $utilidades->verificaTelefone();
         $documento = $utilidades->verificaDocumento();
 
-        new Participante($nome, $sobrenome, $telefone, $documento);
-
+        $participante->registraParticipante($nome, $sobrenome, $telefone, $documento);
         $utilidades->limpaTela();
 
         return $this->telaInicio();
@@ -70,30 +72,34 @@ class Tela
 
     public function telaConfiguracaoBingo()
     {
+        $cartela = new Cartela();
         $utilidades = new Util();
-        $utilidades->cabecalho('Configuração Bingo');
+        $participante = new Participante();
 
-        print "1 - Configurar Camanho da Cartela\n2 - Registrar Cartela\n\n0 - Voltar\n";
+        $utilidades->cabecalho('Configuração Bingo');
+        print "1 - Configurar Cartela\n2 - Registrar Cartela\n\n0 - Voltar\n";
         $opcao = $utilidades->lerOpcao();
 
         if ($opcao == 1) {
             $utilidades->limpaTela();
+            $utilidades->cabecalho('Configuração Cartela');
 
-            $tamanhoCartela =  $this->telaConfigurarCartela();
+            $numerosCartela = $cartela->configuraCatela();
+
+            $utilidades->limpaTela();
+
+            return $this->telaConfiguracaoBingo();
         }
         if ($opcao == 2) {
+            $utilidades->cabecalho('Registrar Cartela');
+
+            $participante->escolherParticipante();
         }
         if ($opcao == 0) {
             $utilidades->limpaTela();
 
             return $this->telaInicio();
         }
-    }
-
-    public function telaConfigurarCartela(){
-        $utilidades = new Util();
-        $utilidades->cabecalho('Configuração Cartela');
-
     }
 
     public function telaPremio()
