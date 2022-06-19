@@ -15,25 +15,25 @@ class Tela
     {
         Util::cabecalho('Menu Inicial');
 
-        print "1 - Cadastrar Participante \n2 - Configurar Bingo \n3 - Prêmios \n4 - Iniciar Bingo\n5 - Sair\n\n";
+        print "1 - Cadastrar Participante \n2 - Configurações \n3 - Prêmios \n4 - Iniciar Bingo\n\n0 - Sair\n\n";
         $opcao = Util::lerOpcao();
 
         if ($opcao == 1) {
             Util::limpaTela();
 
-            return $this->telaCadastroParticipante();
+            $this->telaCadastroParticipante();
         }
         if ($opcao == 2) {
             Util::limpaTela();
 
-            return $this->telaConfiguracaoBingo();
+            $this->telaConfiguracaoBingo();
         }
         if ($opcao == 3) {
             Util::limpaTela();
 
-            return $this->telaPremio();
+            $this->telaPremio();
         }
-        if ($opcao == 5) {
+        if ($opcao == 0) {
             Util::limpaTela();
 
             exit;
@@ -42,7 +42,7 @@ class Tela
         Util::limpaTela();
         print "\n* Opção não encontrada, tente novamente\n\n";
 
-        return $this->telaInicio();
+        $this->telaInicio();
     }
 
     public function telaCadastroParticipante()
@@ -58,10 +58,10 @@ class Tela
         $participante->registraParticipante($nome, $sobrenome, $telefone, $documento);
         Util::limpaTela();
 
-        return $this->telaInicio();
+        $this->telaInicio();
     }
 
-    public function telaConfiguracaoBingo()
+    public function telaConfiguracaoBingo($arrCartela = false)
     {
         $cartela = new Cartela();
         $participante = new Participante();
@@ -74,22 +74,46 @@ class Tela
             Util::limpaTela();
             Util::cabecalho('Configuração Cartela');
 
-            $numerosCartela = $cartela->configuraCatela();
+            $arrCartela = $cartela->configuraCatela();
 
             Util::limpaTela();
 
-            return $this->telaConfiguracaoBingo();
+            $this->telaConfiguracaoBingo($arrCartela);
         }
         if ($opcao == 2) {
-            Util::cabecalho('Registrar Cartela');
+            if ($arrCartela) {
+                Util::limpaTela();
+                Util::cabecalho('Registrar Cartela');
 
-            $participante->escolherParticipante();
+                $this->telaRegistrarCartela($arrCartela);
+            }
+            Util::limpaTela();
+            print "\n* Faça a configuração da cartela primeiro\n\n";
+
+            $this->telaConfiguracaoBingo();
         }
         if ($opcao == 0) {
             Util::limpaTela();
 
-            return $this->telaInicio();
+            $this->telaInicio();
         }
+        Util::limpaTela();
+        print "\n* Opção não encontrada, tente novamente\n\n";
+
+        $this->telaConfiguracaoBingo();
+    }
+
+    public function telaRegistrarCartela($tamanhoCartela)
+    {
+        $participantes = new Participante();
+        $cartela = new Cartela();
+        $todosParticipantes = $participantes->verTodosParticipantes();
+
+        $opcao = Util::lerOpcao();
+
+        $cartela->registraCartela($todosParticipantes[$opcao], $tamanhoCartela['tamanho']);
+
+        $this->telaConfiguracaoBingo($tamanhoCartela);
     }
 
     public function telaPremio()
@@ -104,23 +128,23 @@ class Tela
         if ($opcao == 1) {
             Util::limpaTela();
 
-            return $this->telaRegistraPremio();
+            $this->telaRegistraPremio();
         }
         if ($opcao == 2) {
             Util::limpaTela();
             $premio->verPremios();
 
-            return $this->telaPremio();
+            $this->telaPremio();
         }
         if ($opcao == 0) {
             Util::limpaTela();
 
-            return $this->telaInicio();
+            $this->telaInicio();
         }
         Util::limpaTela();
         print "\n* Opção não encontrada, tente novamente\n\n";
 
-        return $this->telaPremio();
+        $this->telaPremio();
     }
 
     public function telaRegistraPremio()
@@ -136,6 +160,6 @@ class Tela
 
         Util::limpaTela();
 
-        return $this->telaInicio();
+        $this->telaInicio();
     }
 }

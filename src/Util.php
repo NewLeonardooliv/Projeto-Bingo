@@ -125,11 +125,11 @@ class Util
     public static function verificaArquivo($arquivo)
     {
         for ($i = 0; $i < count($arquivo); $i++) {
-            if (preg_replace('([^\\s]+(\\.(? i)(txt?))$)', '', $arquivo)) {
-                $arquivo += $arquivo;
+            if (substr($arquivo[$i], -4) == '.txt') {
+                $arrArquivo[] = $arquivo[$i];
             }
         }
 
-        return $arquivo;
+        return $arrArquivo;
     }
 }

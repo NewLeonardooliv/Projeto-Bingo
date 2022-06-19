@@ -27,10 +27,10 @@ class Premio
 
         $arquivo = Util::verificaArquivo($arquivo);
 
-        if (count($arquivo) > 2) {
+        if (count($arquivo) >= 1) {
             print "Prêmios registrados: \n";
         }
-        if (count($arquivo) <= 2) {
+        if (count($arquivo) == 0) {
             print "* Nenhum prêmio encontrado\n";
         }
 

@@ -8,14 +8,14 @@ class Cartela
     {
         $texto = 'Números da certela: ';
 
-        $arquivo = Participante::DIR_ARQUIVO_PARTICIPANTE."{$participante}.txt";
+        $arquivo = Participante::DIR_ARQUIVO_PARTICIPANTE.$participante;
 
-        $fp = fopen($arquivo, 'a');
+        $fp = fopen($arquivo, 'a+');
 
         if (file_exists($arquivo)) {
             fwrite($fp, $texto);
 
-            for ($i = 0; $i < $tamanho; $i++) {
+            for ($i = 1; $i <= $tamanho; $i++) {
                 $numero = readline("Informe o {$i}º valor: ");
                 fwrite($fp, $numero);
             }

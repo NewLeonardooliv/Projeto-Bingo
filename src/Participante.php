@@ -23,16 +23,20 @@ class Participante
     {
         $arquivo = scandir(self::DIR_ARQUIVO_PARTICIPANTE);
 
-        for ($i = 2; $i < count($arquivo); $i++) {
-            if (file_exists($arquivo)) {
-                $fp = fopen($arquivo, 'r');
+        $arquivo = Util::verificaArquivo($arquivo);
 
-                print fread($fp, filesize($arquivo));
-
-                fclose($fp);
-            }
-            print "\n\n";
+        if (count($arquivo) >= 1) {
+            print "Participantes registrados: \n";
         }
+        if (count($arquivo) == 0) {
+            print "* Nenhum participante encontrado\n";
+        }
+        for ($i = 0; $i < count($arquivo); $i++) {
+            print "{$i} - {$arquivo[$i]}\n";
+        }
+        print "\n\n";
+
+        return $arquivo;
     }
 
     public function registraParticipante($nome, $sobrenome, $telefone, $documento)
@@ -48,14 +52,5 @@ class Participante
 
             fclose($fp);
         }
-    }
-
-    public function escolherParticipante()
-    {
-        $participantes = $this->verTodosParticipantes();
-
-        $escolha = readline('Informe participante: ');
-
-        $participantes["{$escolha}"];
     }
 }
